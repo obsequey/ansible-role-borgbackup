@@ -116,6 +116,8 @@ storage:
 # https://borgbackup.readthedocs.org/en/stable/usage.html#borg-prune for details.
 # At least one of the "keep" options is required for pruning to work.
 retention:
+    prefix: '{hostname}-'
+
 {% if borg_retention_policy.keep_secondly is defined %}
     # Number of secondly archives to keep.
     keep_secondly: {{ borg_retention_policy.keep_secondly }}
