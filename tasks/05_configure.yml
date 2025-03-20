@@ -13,6 +13,7 @@
       ansible.builtin.template:
         src: config.yaml.j2
         dest: "/etc/borgmatic/{{ borgmatic_config_name }}"
+        backup: true
         mode: "0600"
         owner: "{{ borg_user }}"
         group: "{{ borg_group }}"
