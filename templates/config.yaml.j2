@@ -176,6 +176,7 @@ consistency:
 
     # Restrict the number of checked archives to the last n. Applies only to the "archives" check.
     check_last: {{ borgmatic_check_last }}
+    prefix: "{hostname}-"
 
 # Shell commands or scripts to execute before and after a backup or if an error has occurred.
 # IMPORTANT: All provided commands and scripts are executed with user permissions of borgmatic.
