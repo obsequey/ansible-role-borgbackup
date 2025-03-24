@@ -82,6 +82,7 @@ $ git clone https://github.com/borgbase/ansible-role-borgbackup.git roles/ansibl
   Can be a list if you want to backup to multiple repositories.
 
 ### Optional Variables
+- `borg_archive_name_format`: Format string for archive names. Defaults to `'{hostname}-{now:%Y-%m-%d-%H%M%S}'`
 - `borg_dep_packages`: Dependency Packages to install `borg(backup)` and `borgmatic`.
 - `borg_distro_packages`: contains the names of distributions packages for `borg(backup)` and `borgmatic`, only used if `borg_install_method` is set to `package`.
 - `borg_encryption_passcommand`: The standard output of this command is used to unlock the encryption key.
@@ -101,6 +102,7 @@ $ git clone https://github.com/borgbase/ansible-role-borgbackup.git roles/ansibl
 - `borg_ssh_key_file_path`: SSH-key to be used. Default `~/.ssh/{{ borg_ssh_key_name }}`
 - `borg_ssh_key_type`: The algorithm used to generate the SSH private key. Choose: `rsa`, `dsa`, `rsa1`, `ecdsa`, `ed25519`. Default: `ed25519`
 - `borg_ssh_command`: Command to use instead of just "ssh". This can be used to specify SSH options.
+- `borg_ssh_key_comment`: Comment to add to the SSH key. Default `{{ borg_user }}@{{ inventory_hostname }}`
 - `borg_version`: Force a specific borg version to be installed
 - `borg_venv_path`: Path to store the venv for `borg(backup)` and `borgmatic`
 
@@ -111,11 +113,12 @@ $ git clone https://github.com/borgbase/ansible-role-borgbackup.git roles/ansibl
 - `borgmatic_timer_minute`: Minute when regular create and prune cron/systemd-timer job will run. Defaults to  `{{ 59 | random }}`
 - `borgmatic_hooks`: Hooks to monitor your backups e.g. with [Healthchecks](https://healthchecks.io/). See [official documentation](https://torsion.org/borgmatic/docs/how-to/monitor-your-backups/) for more.
 - `borgmatic_timer`: If the variable is set, a timer is installed. A choice must be made between `cron` and `systemd`.
+- `borgmatic_timer_options`: Additional options for the timer to append after the main script in cron. Not used by default.
 - `borgmatic_relocated_repo_access_is_ok`: Bypass Borg error about a repository that has been moved. Defaults to `false`
 - `borgmatic_store_atime`: Store atime into archive. Defaults to `true`
 - `borgmatic_store_ctime`: Store ctime into archive. Defaults to `true`
 - `borgmatic_version`: Force a specific borgmatic version to be installed
-
+borg_archive_name_format
 - `borg_user`: Name of the User to create Backups (service account)
 - `borg_group`: Name of the Group to create Backups (service account)
 
