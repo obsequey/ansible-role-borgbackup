@@ -12,6 +12,7 @@
     - name: Generate an OpenSSH keypair
       community.crypto.openssh_keypair:
         path: "{{ borg_ssh_key_file_path }}"
+        comment: "{{ borg_ssh_key_comment }}"
         mode: "0600"
         type: "{{ borg_ssh_key_type }}"
         owner: "{{ borg_user }}"
